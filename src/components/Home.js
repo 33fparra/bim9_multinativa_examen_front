@@ -19,9 +19,9 @@ class Home extends Component {
     }
 
     getLastFive = () => {
-        axios.get(this.url + "pacientes/5").then(res => {
+        axios.get(this.url + "libros/3").then(res => {
             this.setState({
-                users: res.data.paciente,
+                users: res.data.libro,
                 status: 'Success'
             })
         })
@@ -29,6 +29,7 @@ class Home extends Component {
 
 
     render() {
+        console.log(this.users)
         if (this.state.users.length ) {
 
             return (
@@ -50,14 +51,14 @@ class Home extends Component {
                                         <td>{u.ISBN}</td>
                                         <td>
                                             {
-                                                u.photoPersonal != null ? (
-                                                    <img src={u.portada} alt={u.nombreLibro} height="100px" width="100px"></img>
+                                                u.portada != null ? (
+                                                    <img src={this.url + '/libro/photo/' + u.portada} alt={u.nombreLibro} height="100px" width="100px"></img>
                                                 ) : (
                                                     <img src="https://pbs.twimg.com/media/ERfnjPtWoAYbAad.jpg" alt={u.nombreLibro} height="100px" width="100px"></img>
                                                 )
                                             }
                                         </td>
-                                        <td><Link to={'/paciente/detalle/' + u._id}>Detalles</Link></td>
+                                        <td><Link to={'/libro/detalle/' + u._id}>Detalles</Link></td>
                                     </tr>
                                 )
                             })

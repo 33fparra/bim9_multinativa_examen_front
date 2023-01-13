@@ -61,9 +61,9 @@ class CrearPaciente extends Component {
                         console.log(this.state.user);
                         var id = this.state.user._id
                         const formData = new FormData()
-                        formData.append('file', this.state.photo, this.state.photo.name) //ACA TENGO DUDA EN EL PHOTO.NAME  ESTARA BIEN AHI?
+                        formData.append('file', this.state.photo, this.state.photo.portada) //ACA TENGO DUDA EN EL PHOTO.NAME  ESTARA BIEN AHI?
 
-                        axios.post(this.url + "/user/photo/" + id, formData).then(res => {
+                        axios.post(this.url + "/libro/photo/" + id, formData).then(res => {
                             if (res.data.user) {
                                 this.setState({
                                     user: res.data.user,
@@ -144,7 +144,7 @@ class CrearPaciente extends Component {
                             
                             <tr>
                                 <td><label>PORTADA</label></td>
-                                <td><input type="file" name="photo" onChange={this.fileChange} /></td>
+                                <td><input type="file" name="portada" onChange={this.fileChange} /></td>
                             </tr>
                             <tr>
                                 <td onClick={this.changeState}><input type="submit" value="Crear libro" /></td>
