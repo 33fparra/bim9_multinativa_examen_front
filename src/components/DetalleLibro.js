@@ -20,7 +20,7 @@ class DetalleLibro extends Component{
 
     getUserById = () => {
         var id = this.props.match.params.id;
-        axios.get(this.url + 'libro/' + id).then(res => {
+        axios.get(this.url + '/libro/' + id).then(res => {
             if(res){
                 this.setState({
                     user: res.data.libro,
@@ -36,7 +36,7 @@ class DetalleLibro extends Component{
     }
 
     deleteUserById = (id) => {
-        axios.delete(this.url + "libro/" + id).then(res =>{
+        axios.delete(this.url + "/libro/" + id).then(res =>{
             this.setState({
                 user: res.data.user,
                 status: 'deleted'

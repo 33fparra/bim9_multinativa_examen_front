@@ -19,9 +19,11 @@ class Home extends Component {
     }
 
     getLastFive = () => {
-        axios.get(this.url + "libros/3").then(res => {
+
+        axios.get(this.url + "/libros/3").then(res => {
+        console.log(res)
             this.setState({
-                users: res.data.libro,
+                users: res.data.libros,
                 status: 'Success'
             })
         })
@@ -29,8 +31,8 @@ class Home extends Component {
 
 
     render() {
-        console.log(this.users)
-        if (this.state.users.length ) {
+        
+        if (this.state.users.length) {
 
             return (
                 <table>

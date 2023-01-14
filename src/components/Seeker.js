@@ -10,10 +10,11 @@ import Search from '../components/BuscarLibro';
 class Seeker extends Component{
     render(){
         var field = this.props.match.params.search;
-        returm(
+        console.log(field);
+        return(
             <div>
                 <h1>Searching: {field}</h1>
-                <ListarLibros buscar={field}></ListarLibros>
+                <ListarLibros search={field}></ListarLibros>
                 <Search></Search>
             </div>
         );

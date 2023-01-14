@@ -12,6 +12,7 @@ class Search extends Component {
     };
 
     searchByField = (e) => {
+        console.log(e);
         e.preventDefault();
         this.setState({
             search: this.searchRef.current.value,

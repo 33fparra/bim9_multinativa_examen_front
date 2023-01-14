@@ -7,7 +7,8 @@ import URL from '../common/Global'
 
 
 class ListarPaciente extends Component {
-    url = URL.API
+    url = URL.API;
+
 
     state = {
         libros: [],
@@ -28,8 +29,9 @@ class ListarPaciente extends Component {
 
     getUsers = () => {
         axios.get(this.url + '/libros').then(res => {
+          
             this.setState({
-                libros: res.data.libro,
+                libros: res.data.libros,
                 status: 'success'
             })
         })
@@ -38,33 +40,34 @@ class ListarPaciente extends Component {
     getLastsUsers = () => {
         axios.get(this.url + '/libros/last').then(res => {
             this.setState({
-                libros: res.data.libro,
+                libros: res.data.libros,
                 status: 'success'
             })
         })
     }
 
-    getUsersBySearch2 = (search) => {
-        axios.get(this.url + '/libro/search/' + search).then(res => {
-            if (res.data.libro) {
-                this.setState({
-                    libros: res.data.libro,
-                    status: 'success'
-                })
-            } else {
-                this.setState({
-                    libros: res.data.libro,
-                    status: 'error'
-                })
-            }
-        })
-    }
+    // getUsersBySearch2 = (search) => {
+    //     axios.get(this.url + '/libro/search/' + search).then(res => {
+    //         if (res.data.libro) {
+    //             this.setState({
+    //                 libros: res.data.libro,
+    //                 status: 'success'
+    //             })
+    //         } else {
+    //             this.setState({
+    //                 libros: res.data.libro,
+    //                 status: 'error'
+    //             })
+    //         }
+    //     })
+    // }
 
     getUsersBySearch = (search)=>{
         axios.get(this.url + '/libro/search/' + search).then(res=>{
-            if(res.data.libros){
+            console.log(res);
+            if(res.data.libro){
                 this.setState({
-                    libros: res.data.libros,
+                    libros: res.data.libro,
                     state: 'success'
                 })
             }else{
@@ -76,6 +79,7 @@ class ListarPaciente extends Component {
         })
     }
     render() {
+
         if (this.state.libros.length >= 1) {
             return (
                 <table border="1">
@@ -94,7 +98,7 @@ class ListarPaciente extends Component {
                                     <td>{u.ISBN}</td>
                                     <td>{u.nombreLibro}</td>
                                     <td>
-                                        {u.portada != null ? (
+                                        {u.portada != null ? (   //ACA IGUAL ME CONFUNDI NO SE SI VA PHOTO O PORTADA?
                                                 <img src={this.url + '/libro/photo/' + u.portada} alt={u.nombreLibro} height="100px" width="100px"></img>
                                             ) : (
                                                 <img src="https://www.rockombia.com/images/upload/rockombia-201504171429313975.jpg?" alt={u.nombreLibro} height="100px" width="100px"></img>

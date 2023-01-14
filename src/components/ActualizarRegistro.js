@@ -50,7 +50,7 @@ class ActualizarRegistro extends Component {
     }
 
     getUserById = (id) => {
-        axios.get(this.url + 'libro/' + id).then(res => {
+        axios.get(this.url + '/libro/' + id).then(res => {
             this.setState({
                 user: res.data.libro
             })
@@ -71,7 +71,8 @@ class ActualizarRegistro extends Component {
                     if (this.state.photo !== null) {
                         var id = this.state.user._id
                         const formData = new FormData()
-                        formData.append('file', this.state.photo, this.state.photo.name)
+                        formData.append('file', this.state.photo, this.state.photo.portada)  //portada el elemento photo esta bien o me confundo al trabajar ambos?   FOTO, FILE, PORTADA
+
 
                         axios.post(this.url + "/libro/photo/" + id, formData).then(res => {
                             if (res.data.user) {
